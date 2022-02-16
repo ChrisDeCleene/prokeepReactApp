@@ -26,4 +26,24 @@ describe("Auth", () => {
     userEvent.type(passwordInputElement, "password!");
     expect(passwordInputElement.value).toBe("password!");
   });
+  describe("Error Handling", () => {
+    test("should show email error message on invalid email", () => {
+      const invalidEmailMessageElement = screen.queryByText(
+        /the email you input is invalid/i
+      );
+      expect(
+        invalidEmailMessageElement
+      ).not.toBeInTheDocument();
+
+      userEvent.type(screen.getByLabelText("Email"), "eve.holtreqres.in");
+
+      const submitButtonElement = screen.getByRole("button", {
+        name: /login/i,
+      });
+
+      userEvent.click(submitButtonElement);
+      
+      expect(invalidEmailMessageElement).toBeInTheDocument()
+    });
+  });
 });
