@@ -28,10 +28,10 @@ describe("Auth", () => {
   });
   describe("Error Handling", () => {
     test("should show email error message on invalid email", () => {
-      expect(screen.queryByText(
-        /the email you input is invalid/i
-      )).not.toBeInTheDocument();
-      
+      expect(
+        screen.queryByText(/the email you input is invalid/i)
+      ).not.toBeInTheDocument();
+
       userEvent.type(screen.getByRole("textbox"), "eve.holtreqres.in");
 
       const submitButtonElement = screen.getByRole("button", {
@@ -42,6 +42,27 @@ describe("Auth", () => {
 
       expect(
         screen.getByText(/the email you input is invalid/i)
+      ).toBeInTheDocument();
+    });
+    test("should show password error if password is less than 5 characters", () => {
+      expect(
+        screen.queryByText(
+          /the password you entered must contain 5 or more characters/i
+        )
+      ).not.toBeInTheDocument();
+
+      userEvent.type(screen.getByLabelText("Password"), "pass");
+
+      const submitButtonElement = screen.getByRole("button", {
+        name: /login/i,
+      });
+
+      userEvent.click(submitButtonElement);
+
+      expect(
+        screen.getByText(
+          /the password you entered must contain 5 or more characters/i
+        )
       ).toBeInTheDocument();
     });
   });

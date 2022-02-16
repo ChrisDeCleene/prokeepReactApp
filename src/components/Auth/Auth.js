@@ -3,8 +3,8 @@ import { useState } from "react";
 
 const Auth = ({ setIsLoggedIn }) => {
   // let navigate = useNavigate();
-  const [enteredEmail, setEnteredEmail] = useState();
-  const [enteredPassword, setEnteredPassword] = useState();
+  const [enteredEmail, setEnteredEmail] = useState("");
+  const [enteredPassword, setEnteredPassword] = useState("");
 
   const [error, setError] = useState();
 
