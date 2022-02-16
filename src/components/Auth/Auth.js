@@ -1,8 +1,8 @@
 import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Auth = ({ setIsLoggedIn }) => {
-  // let navigate = useNavigate();
+  let navigate = useNavigate();
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
 
@@ -19,6 +19,38 @@ const Auth = ({ setIsLoggedIn }) => {
       setError("The password you entered must contain 5 or more characters.");
       return;
     }
+
+    let url = "https://reqres.in/api/login";
+
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify({
+        email: enteredEmail,
+        password: enteredPassword,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Request failed!");
+      })
+      .then((jsonResponse) => {
+        console.log(jsonResponse);
+        if (jsonResponse.error) {
+          // TODO create some sort of error alert on the screen
+          return alert(jsonResponse.error);
+        }
+        if (jsonResponse.token) {
+          setIsLoggedIn(true);
+          setEnteredEmail("");
+          setEnteredPassword("");
+          navigate("/profile", { replace: true });
+        }
+      });
   };
 
   return (
@@ -61,7 +93,7 @@ const Auth = ({ setIsLoggedIn }) => {
             required
           />
         </div>
-        {error && <p className="form-error">{error}</p>}
+        {error && <p style={{ color: "red" }}>{error}</p>}
         <div className="form-actions">
           <button>Login</button>
         </div>
