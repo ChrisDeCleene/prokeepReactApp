@@ -51,6 +51,8 @@ describe("Auth", () => {
         )
       ).not.toBeInTheDocument();
 
+      // Type in a correct email or email will throw notice first
+      userEvent.type(screen.getByRole("textbox"), "eve.holt@reqres.in");
       userEvent.type(screen.getByLabelText("Password"), "pass");
 
       const submitButtonElement = screen.getByRole("button", {

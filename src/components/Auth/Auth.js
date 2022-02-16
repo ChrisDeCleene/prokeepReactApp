@@ -12,7 +12,11 @@ const Auth = ({ setIsLoggedIn }) => {
     e.preventDefault();
 
     if (!enteredEmail.includes("@")) {
-      setError("The email you input is invalid!");
+      setError("The email you input is invalid.");
+      return;
+    }
+    if (enteredPassword.length < 5) {
+      setError("The password you entered must contain 5 or more characters.");
       return;
     }
   };
@@ -29,7 +33,12 @@ const Auth = ({ setIsLoggedIn }) => {
             id="email"
             name="email"
             value={enteredEmail}
-            onChange={(e) => setEnteredEmail(e.target.value)}
+            onChange={(e) => {
+              setEnteredEmail(e.target.value);
+              if (error) {
+                setError();
+              }
+            }}
             placeholder="Email"
             required
           />
@@ -41,6 +50,13 @@ const Auth = ({ setIsLoggedIn }) => {
             aria-required="true"
             id="password"
             name="password"
+            value={enteredPassword}
+            onChange={(e) => {
+              setEnteredPassword(e.target.value);
+              if (error) {
+                setError();
+              }
+            }}
             placeholder="Password"
             required
           />
