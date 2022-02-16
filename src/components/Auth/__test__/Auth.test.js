@@ -28,22 +28,21 @@ describe("Auth", () => {
   });
   describe("Error Handling", () => {
     test("should show email error message on invalid email", () => {
-      const invalidEmailMessageElement = screen.queryByText(
+      expect(screen.queryByText(
         /the email you input is invalid/i
-      );
-      expect(
-        invalidEmailMessageElement
-      ).not.toBeInTheDocument();
-
-      userEvent.type(screen.getByLabelText("Email"), "eve.holtreqres.in");
+      )).not.toBeInTheDocument();
+      
+      userEvent.type(screen.getByRole("textbox"), "eve.holtreqres.in");
 
       const submitButtonElement = screen.getByRole("button", {
         name: /login/i,
       });
 
       userEvent.click(submitButtonElement);
-      
-      expect(invalidEmailMessageElement).toBeInTheDocument()
+
+      expect(
+        screen.getByText(/the email you input is invalid/i)
+      ).toBeInTheDocument();
     });
   });
 });
