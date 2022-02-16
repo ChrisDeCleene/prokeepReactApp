@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+# Simple React Login Form with Validation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> A React app created using Create-React-App that consists of a login form that sends a login REST post request to this stubbed REST service: https://reqres.in. To increase the user experience of this project, I have added a home page, profile page and authorization page using react-router v6. In addition, I utilize local storage to persist user sessions across reloads.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [General Info](#general-information)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Status](#project-status)
+- [Contact](#contact)
 
-### `npm start`
+## General Information
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Login form with an email input and a password input.
+- Login form validates that the email is a valid email input.
+- The password field checks for at least five characters before you process the submit action.
+- Includes unit test for the form – testing both a valid login and an invalid login. (React Testing Library + Jest)
+- Local storage used to storage user session data and persist logged in status.
+- React Router used to add pages and create seamless experience for users.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Technologies Used
 
-### `npm test`
+![image](https://img.icons8.com/office/40/000000/react.png)
+![image](https://img.icons8.com/color/48/000000/javascript--v1.png)
+![image](https://img.icons8.com/color/48/000000/git.png)
+![image](https://img.icons8.com/fluent/48/000000/github.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Other technologies used:
 
-### `npm run build`
+- React Router v6
+- React Testing Library
+- Jest
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Fork or clone the repo and install node modules:
 
-### `npm run eject`
+```bash
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Run application in development environment:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Run React Testing Library Suite:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+npm run test
+```
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Usage
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Form can be used to login or register a user.
+- Due to Reqres API not accepting new data for login or register, you will need to use a valid email. Below is a list of valid options.
 
-### Code Splitting
+1. george.bluth@reqres.in
+2. janet.weaver@reqres.in
+3. emma.wong@reqres.in
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Submit form to sign in and get access to user profile page.
 
-### Analyzing the Bundle Size
+## Project Status
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Project is: _complete_
 
-### Making a Progressive Web App
+## Contact
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Created by [Chris DeCleene](https://chrisdecleene.github.io/) - feel free to contact me!
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<!-- Optional -->
+<!-- ## License -->
