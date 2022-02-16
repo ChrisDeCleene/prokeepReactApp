@@ -67,5 +67,24 @@ describe("Auth", () => {
         )
       ).toBeInTheDocument();
     });
+    test("should show no error message if every input is valid", () => {
+      userEvent.type(screen.getByRole("textbox"), "eve.holt@reqres.in");
+      userEvent.type(screen.getByLabelText("Password"), "password!");
+
+      const submitButtonElement = screen.getByRole("button", {
+        name: /login/i,
+      });
+
+      userEvent.click(submitButtonElement);
+      expect(
+        screen.queryByText(/the email you input is invalid/i)
+      ).not.toBeInTheDocument();
+      
+      expect(
+        screen.queryByText(
+          /the password you entered must contain 5 or more characters/i
+        )
+      ).not.toBeInTheDocument();
+    });
   });
 });
