@@ -1,6 +1,6 @@
 # Simple React Login Form with Validation
 
-> A React app created using Create-React-App that consists of a login form that sends a login REST post request to this stubbed REST service: https://reqres.in. To increase the user experience of this project, I have added a home page, profile page and authorization page using react-router v6. In addition, I utilize local storage to persist user sessions across reloads.
+> A React app created using Create-React-App that consists of a login form that sends a login REST post request to this stubbed REST service: https://reqres.in. To increase the user experience of this project, I utilize local storage to persist user sessions between visits.
 
 ## Table of Contents
 
@@ -16,9 +16,8 @@
 - Login form with an email input and a password input.
 - Login form validates that the email is a valid email input.
 - The password field checks for at least five characters before you process the submit action.
-- Includes unit test for the form – testing both a valid login and an invalid login. (React Testing Library + Jest)
+- Includes unit test for the Auth form – testing both a valid login and an invalid login. (React Testing Library + Jest)
 - Local storage used to storage user session data and persist logged in status.
-- React Router used to add pages and create seamless experience for users.
 
 ## Technologies Used
 
@@ -29,9 +28,9 @@
 
 #### Other technologies used:
 
-- React Router v6
 - React Testing Library
 - Jest
+- [validator v13](https://www.npmjs.com/package/validator)
 
 ---
 
@@ -54,7 +53,14 @@ Run React Testing Library Suite:
 ```bash
 npm run test
 ```
+Create local static build and run:
 
+```bash
+npm run build
+```
+```bash
+npm run start
+```
 ---
 
 ## Usage
