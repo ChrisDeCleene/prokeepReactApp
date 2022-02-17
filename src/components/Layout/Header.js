@@ -6,25 +6,19 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
       <img src={ProkeepLogo} alt="Logo" />
 
       <nav>
-        <ul>
-          {!isLoggedIn ? (
-            <li>
-              <a href="/">Login</a>
-            </li>
-          ) : (
-            <li>
-              <button
-                onClick={() => {
-                  localStorage.removeItem("token");
-                  localStorage.removeItem("expiresIn");
-                  setIsLoggedIn((prevState) => !prevState);
-                }}
-              >
-                Logout
-              </button>
-            </li>
-          )}
-        </ul>
+        {!isLoggedIn ? (
+          <a href="/">Login</a>
+        ) : (
+          <button
+            onClick={() => {
+              localStorage.removeItem("token");
+              localStorage.removeItem("expiresIn");
+              setIsLoggedIn((prevState) => !prevState);
+            }}
+          >
+            Logout
+          </button>
+        )}
       </nav>
     </header>
   );

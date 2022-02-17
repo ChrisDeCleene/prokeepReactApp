@@ -73,16 +73,12 @@ nav {
   align-items: center;
 }
 
-nav ul {
-  display: flex;
-}
-
-nav li {
+nav {
   list-style: none;
 }
 
-nav li a,
-nav li button {
+nav a,
+nav button {
   font-family: "Barlow", sans-serif;
   text-decoration: none;
   margin: 0;
@@ -95,10 +91,10 @@ nav li button {
   border: none;
 }
 
-nav li a:hover,
-nav li a:active,
-nav li button:hover,
-nav li button:active {
+nav a:hover,
+nav a:active,
+nav button:hover,
+nav button:active {
   color: var(--tan-font);
   text-decoration: underline;
 }
