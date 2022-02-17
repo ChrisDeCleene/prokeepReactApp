@@ -22,7 +22,7 @@ const Auth = ({ setIsLoggedIn }) => {
 
     let url = "https://reqres.in/api/login";
 
-    fetch(url, {
+    return fetch(url, {
       method: "POST",
       body: JSON.stringify({
         email: enteredEmail,
@@ -46,8 +46,6 @@ const Auth = ({ setIsLoggedIn }) => {
         }
         if (jsonResponse.token) {
           setIsLoggedIn(true);
-          setEnteredEmail("");
-          setEnteredPassword("");
           navigate("/profile", { replace: true });
         }
       });
