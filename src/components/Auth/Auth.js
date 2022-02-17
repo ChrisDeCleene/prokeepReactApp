@@ -7,6 +7,7 @@ const Auth = ({ setIsLoggedIn }) => {
   const [enteredPassword, setEnteredPassword] = useState("");
 
   const [error, setError] = useState();
+  const [isLoginView, setIsLoginView] = useState(true);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -20,7 +21,13 @@ const Auth = ({ setIsLoggedIn }) => {
       return;
     }
 
-    let url = "https://reqres.in/api/login";
+    let url;
+
+    if(isLoginView) {
+      url = "https://reqres.in/api/login";
+    } else {
+      url = "https://reqres.in/api/register";
+    }
 
     return fetch(url, {
       method: "POST",
@@ -55,9 +62,13 @@ const Auth = ({ setIsLoggedIn }) => {
       });
   };
 
+  const switchAuthModeHandler = () => {
+    setIsLoginView((prevState) => !prevState);
+  };
+
   return (
     <section>
-      <h1>Login</h1>
+      <h1>{isLoginView ? "Login" : "Create Account"}</h1>
       <form onSubmit={submitHandler}>
         <div className="form-control">
           <input
@@ -97,8 +108,11 @@ const Auth = ({ setIsLoggedIn }) => {
         </div>
         {error && <p style={{ color: "red" }}>{error}</p>}
         <div className="form-actions">
-          <button>Login</button>
+          <button className="form-btn">{isLoginView ? "Login" : "Submit"}</button>
         </div>
+        <button type="button" onClick={switchAuthModeHandler} className="register-link">
+          {isLoginView ? "Not Signed Up?" : "Login to existing account."}
+        </button>
       </form>
     </section>
   );
