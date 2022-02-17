@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 import Auth from "../Auth";
 
@@ -31,7 +30,7 @@ const clickSubmitButton = () => {
 describe("Auth", () => {
   beforeEach(() => {
     // eslint-disable-next-line testing-library/no-render-in-setup
-    render(<Auth setIsLoggedIn={setIsLoggedIn} />, { wrapper: MemoryRouter });
+    render(<Auth setIsLoggedIn={setIsLoggedIn} />);
   });
   test("inputs should be initially empty", () => {
     // Email input should be empty
