@@ -5,6 +5,29 @@ import Auth from "../Auth";
 
 const setIsLoggedIn = () => {};
 
+const typeIntoForm = ({ email, password }) => {
+  const emailInputElement = screen.getByRole("textbox");
+  const passwordInputElement = screen.getByLabelText("Password");
+  if (email) {
+    userEvent.type(emailInputElement, email);
+  }
+  if (password) {
+    userEvent.type(passwordInputElement, password);
+  }
+  return {
+    emailInputElement,
+    passwordInputElement,
+  };
+};
+
+const clickSubmitButton = () => {
+  const submitButtonElement = screen.getByRole("button", {
+    name: /login/i,
+  });
+
+  userEvent.click(submitButtonElement);
+};
+
 describe("Auth", () => {
   beforeEach(() => {
     // eslint-disable-next-line testing-library/no-render-in-setup
@@ -17,13 +40,11 @@ describe("Auth", () => {
     expect(screen.getByLabelText("Password").value).toBe("");
   });
   test("should be able to type an email", () => {
-    const emailInputElement = screen.getByRole("textbox");
-    userEvent.type(emailInputElement, "eve.holt@reqres.in");
+    const { emailInputElement } = typeIntoForm({ email: "eve.holt@reqres.in" });
     expect(emailInputElement.value).toBe("eve.holt@reqres.in");
   });
   test("should be able to type a password", () => {
-    const passwordInputElement = screen.getByLabelText("Password");
-    userEvent.type(passwordInputElement, "password!");
+    const { passwordInputElement } = typeIntoForm({ password: "password!" });
     expect(passwordInputElement.value).toBe("password!");
   });
   describe("Error Handling", () => {
@@ -32,13 +53,9 @@ describe("Auth", () => {
         screen.queryByText(/the email you input is invalid/i)
       ).not.toBeInTheDocument();
 
-      userEvent.type(screen.getByRole("textbox"), "eve.holtreqres.in");
+      typeIntoForm({ email: "eve.holtreqres.in" });
 
-      const submitButtonElement = screen.getByRole("button", {
-        name: /login/i,
-      });
-
-      userEvent.click(submitButtonElement);
+      clickSubmitButton();
 
       expect(
         screen.getByText(/the email you input is invalid/i)
@@ -51,15 +68,10 @@ describe("Auth", () => {
         )
       ).not.toBeInTheDocument();
 
-      // Type in a correct email or email will throw notice first
-      userEvent.type(screen.getByRole("textbox"), "eve.holt@reqres.in");
-      userEvent.type(screen.getByLabelText("Password"), "pass");
+      // Type in a correct email and incorrect password
+      typeIntoForm({ email: "eve.holt@reqres.in", password: "pass" });
 
-      const submitButtonElement = screen.getByRole("button", {
-        name: /login/i,
-      });
-
-      userEvent.click(submitButtonElement);
+      clickSubmitButton();
 
       expect(
         screen.getByText(
@@ -68,18 +80,14 @@ describe("Auth", () => {
       ).toBeInTheDocument();
     });
     test("should show no error message if every input is valid", () => {
-      userEvent.type(screen.getByRole("textbox"), "eve.holt@reqres.in");
-      userEvent.type(screen.getByLabelText("Password"), "password!");
+      typeIntoForm({ email: "eve.holt@reqres.in", password: "password!" });
 
-      const submitButtonElement = screen.getByRole("button", {
-        name: /login/i,
-      });
-
-      userEvent.click(submitButtonElement);
+      clickSubmitButton();
+      
       expect(
         screen.queryByText(/the email you input is invalid/i)
       ).not.toBeInTheDocument();
-      
+
       expect(
         screen.queryByText(
           /the password you entered must contain 5 or more characters/i
