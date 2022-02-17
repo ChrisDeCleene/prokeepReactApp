@@ -5,6 +5,21 @@ import Auth from "../Auth";
 
 const setIsLoggedIn = () => {};
 
+const typeIntoForm = ({ email, password }) => {
+  const emailInputElement = screen.getByRole("textbox");
+  const passwordInputElement = screen.getByLabelText("Password");
+  if (email) {
+    userEvent.type(emailInputElement, email);
+  }
+  if (password) {
+    userEvent.type(passwordInputElement, password);
+  }
+  return {
+    emailInputElement,
+    passwordInputElement,
+  };
+};
+
 describe("Auth", () => {
   beforeEach(() => {
     // eslint-disable-next-line testing-library/no-render-in-setup
@@ -17,13 +32,11 @@ describe("Auth", () => {
     expect(screen.getByLabelText("Password").value).toBe("");
   });
   test("should be able to type an email", () => {
-    const emailInputElement = screen.getByRole("textbox");
-    userEvent.type(emailInputElement, "eve.holt@reqres.in");
+    const { emailInputElement } = typeIntoForm({ email: "eve.holt@reqres.in" });
     expect(emailInputElement.value).toBe("eve.holt@reqres.in");
   });
   test("should be able to type a password", () => {
-    const passwordInputElement = screen.getByLabelText("Password");
-    userEvent.type(passwordInputElement, "password!");
+    const { passwordInputElement } = typeIntoForm({ password: "password!" });
     expect(passwordInputElement.value).toBe("password!");
   });
   describe("Error Handling", () => {
@@ -79,7 +92,7 @@ describe("Auth", () => {
       expect(
         screen.queryByText(/the email you input is invalid/i)
       ).not.toBeInTheDocument();
-      
+
       expect(
         screen.queryByText(
           /the password you entered must contain 5 or more characters/i
