@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import ProkeepLogo from "../../assets/prokeep-lockup-primary__2_.png";
+import ProkeepLogo from "../../assets/prokeep-logo-reversed.svg";
 
 const Header = ({ isLoggedIn, setIsLoggedIn }) => {
   return (
