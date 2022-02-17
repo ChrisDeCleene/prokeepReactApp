@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import HomePage from "./pages/HomePage";
 import AuthPage from "./pages/AuthPage";
@@ -7,6 +7,24 @@ import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    // Check for token and if expiresIn has not expired
+    let token = JSON.parse(localStorage.getItem("token"));
+    let expiresIn = JSON.parse(localStorage.getItem("expiresIn"));
+    if (
+      token !== null &&
+      new Date(expiresIn).getTime() - new Date().getTime() > 0
+    ) {
+      setIsLoggedIn(true);
+    } else {
+      localStorage.removeItem("token");
+      localStorage.removeItem("expiresIn");
+      setIsLoggedIn(false);
+      navigate('/login')
+    }
+  }, [navigate]);
 
   return (
     <Layout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}>

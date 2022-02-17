@@ -23,6 +23,8 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
             <li>
               <button
                 onClick={() => {
+                  localStorage.removeItem("token");
+                  localStorage.removeItem("expiresIn");
                   setIsLoggedIn((prevState) => !prevState);
                 }}
               >

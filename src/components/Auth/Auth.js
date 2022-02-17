@@ -39,12 +39,16 @@ const Auth = ({ setIsLoggedIn }) => {
         throw new Error("Request failed!");
       })
       .then((jsonResponse) => {
-        console.log(jsonResponse);
         if (jsonResponse.error) {
           // TODO create some sort of error alert on the screen
           return alert(jsonResponse.error);
         }
         if (jsonResponse.token) {
+          const expirationTime = new Date(
+            new Date().getTime() + 60 * 60 * 1000 // One hour
+          );
+          localStorage.setItem("token", JSON.stringify(jsonResponse.token));
+          localStorage.setItem("expiresIn", JSON.stringify(expirationTime));
           setIsLoggedIn(true);
           navigate("/profile", { replace: true });
         }
