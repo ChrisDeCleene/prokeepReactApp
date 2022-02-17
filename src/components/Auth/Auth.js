@@ -45,6 +45,11 @@ const Auth = ({ setIsLoggedIn }) => {
           return alert(jsonResponse.error);
         }
         if (jsonResponse.token) {
+          const expirationTime = new Date(
+            new Date().getTime() + 60 * 60 * 1000 // One hour
+          );
+          localStorage.setItem("token", JSON.stringify(jsonResponse.token));
+          localStorage.setItem("expiresIn", JSON.stringify(expirationTime));
           setIsLoggedIn(true);
           navigate("/profile", { replace: true });
         }
