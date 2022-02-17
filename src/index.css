@@ -1,4 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Open+Sans:wght@400;700&display=swap");
+/*************************************************************
+  DEFINED VARIABLES
+*************************************************************/
 
 :root {
   --dark-blue: #132c41;
@@ -8,12 +10,16 @@
   --yellow-button: #f3b64e;
 }
 
+/*************************************************************
+  RESET
+*************************************************************/
+
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: "Open Sans", "Lato", sans-serif;
+  font-family: "Barlow", sans-serif;
   margin: 0;
 }
 
@@ -23,61 +29,109 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Lato", sans-serif;
+  font-family: "Barlow", sans-serif;
 }
 
 h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 p,
+a,
 button,
 form {
   text-align: center;
 }
 
+/*************************************************************
+  HEADER STYLES
+*************************************************************/
+
 header {
   display: flex;
+  flex-flow: row;
   justify-content: space-between;
   align-items: center;
   background-color: var(--dark-blue);
   width: 100%;
+  padding-left: 4vw;
+  padding-right: 4vw;
+  min-height: 80px;
+}
+
+header img {
+  max-width: 40vw;
 }
 
 nav {
   display: flex;
   align-items: center;
-  margin-right: 1.5rem;
 }
 
-img {
-  max-width: 55%;
-  margin-left: 1.5rem;
+nav ul {
+  display: flex;
 }
 
 nav li {
   list-style: none;
 }
 
-nav li a {
+nav li a,
+nav li button {
+  font-family: "Barlow", sans-serif;
   text-decoration: none;
-  color: var(--tan-font, white);
+  margin: 0;
+  padding: 0;
+  padding-right: 1.125rem;
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: var(--yellow-button, white);
+  background: none;
+  border: none;
 }
+
+nav li a:hover,
+nav li a:active,
+nav li button:hover,
+nav li button:active {
+  color: var(--tan-font);
+  text-decoration: underline;
+}
+
+/*************************************************************
+  FORM STYLES
+*************************************************************/
 
 input {
   height: 35px;
-    width: 245px;
-    padding: 10px 7px;
-    border-radius: 4px;
-    margin-bottom: 5px;
-    border: 2px solid slategrey;
+  width: 245px;
+  padding: 10px 7px;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  border: 2px solid var(--light-blue);
 }
 
-form button {
-      padding: 10px 34px;
-    cursor: pointer;
-    background: #244968;
-    color: white;
-    font-weight: bold;
-    font-size: 16px;
-    outline: none;
-    border: none;
-    border-radius: 5px;
+.form-btn, .register-link {
+  padding: 10px 34px;
+  cursor: pointer;
+  background: var(--yellow-button);
+  color: var(--blue-font);
+  font-weight: bold;
+  font-size: 1rem;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+}
+
+.register-link {
+  background: none;
+  color: var(--light-blue);
+}
+
+.register-link:hover,
+.register-link:active {
+  color: var(--dark-blue);
+  text-decoration: underline;
 }
