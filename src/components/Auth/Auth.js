@@ -1,29 +1,34 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import isEmail from "validator/lib/isEmail";
+
 const Auth = ({ setIsLoggedIn }) => {
   let navigate = useNavigate();
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
 
-  const [error, setError] = useState();
+  const [error, setError] = useState({});
   const [isLoginView, setIsLoginView] = useState(true);
 
   const submitHandler = (e) => {
     e.preventDefault();
 
-    if (!enteredEmail.includes("@")) {
-      setError("The email you input is invalid.");
+    if (!isEmail(enteredEmail)) {
+      setError({ input: "email", message: "The email you input is invalid." });
       return;
     }
     if (enteredPassword.length < 5) {
-      setError("The password you entered must contain 5 or more characters.");
+      setError({
+        input: "password",
+        message: "The password you entered must contain 5 or more characters.",
+      });
       return;
     }
 
     let url;
 
-    if(isLoginView) {
+    if (isLoginView) {
       url = "https://reqres.in/api/login";
     } else {
       url = "https://reqres.in/api/register";
@@ -39,15 +44,10 @@ const Auth = ({ setIsLoggedIn }) => {
         "Content-Type": "application/json",
       },
     })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Request failed!");
-      })
+      .then((response) => response.json())
       .then((jsonResponse) => {
         if (jsonResponse.error) {
-          // TODO create some sort of error alert on the screen
+          // TODO create ERROR alert Modal for these errors
           return alert(jsonResponse.error);
         }
         if (jsonResponse.token) {
@@ -77,11 +77,12 @@ const Auth = ({ setIsLoggedIn }) => {
             aria-required="true"
             id="email"
             name="email"
+            className={error?.input === "email" ? "btn-error" : ""}
             value={enteredEmail}
             onChange={(e) => {
               setEnteredEmail(e.target.value);
               if (error) {
-                setError();
+                setError({});
               }
             }}
             placeholder="Email"
@@ -95,23 +96,30 @@ const Auth = ({ setIsLoggedIn }) => {
             aria-required="true"
             id="password"
             name="password"
+            className={error?.input === "password" ? "btn-error" : ""}
             value={enteredPassword}
             onChange={(e) => {
               setEnteredPassword(e.target.value);
               if (error) {
-                setError();
+                setError({});
               }
             }}
             placeholder="Password"
             required
           />
         </div>
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {error?.input && <p className="font-error">{error.message}</p>}
         <div className="form-actions">
-          <button className="form-btn">{isLoginView ? "Login" : "Submit"}</button>
+          <button className="form-btn">
+            {isLoginView ? "Login" : "Submit"}
+          </button>
         </div>
-        <button type="button" onClick={switchAuthModeHandler} className="register-link">
-          {isLoginView ? "Not Signed Up?" : "Login to existing account."}
+        <button
+          type="button"
+          onClick={switchAuthModeHandler}
+          className="register-link"
+        >
+          {isLoginView ? "Not Signed Up? Click Here!" : "Login to existing account."}
         </button>
       </form>
     </section>
