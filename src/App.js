@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+
 import Layout from "./components/Layout/Layout";
-import HomePage from "./pages/HomePage";
-import AuthPage from "./pages/AuthPage";
-import ProfilePage from "./pages/ProfilePage";
+import Auth from './components/Auth/Auth'
+import Profile from './components/Profile/Profile'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const navigate = useNavigate()
 
   useEffect(() => {
     // Check for token and if expiresIn has not expired
@@ -22,35 +20,16 @@ function App() {
       localStorage.removeItem("token");
       localStorage.removeItem("expiresIn");
       setIsLoggedIn(false);
-      navigate('/login')
     }
-  }, [navigate]);
+  }, []);
 
   return (
     <Layout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}>
-      <Routes>
-        <Route index element={<HomePage isLoggedIn={isLoggedIn} />} />
-        {isLoggedIn && (
-          <>
-            <Route path="/login" element={<Navigate to="/profile" />} />
-            <Route path="/profile" element={<ProfilePage />} />
-          </>
-        )}
-        {!isLoggedIn && (
-          <>
-            <Route
-              path="/login"
-              element={
-                <AuthPage
-                  isLoggedIn={isLoggedIn}
-                  setIsLoggedIn={setIsLoggedIn}
-                />
-              }
-            />
-            <Route path="/profile" element={<Navigate to="/login" />} />
-          </>
-        )}
-      </Routes>
+      {isLoggedIn ? (
+        <Profile />
+      ) : (
+        <Auth isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+      )}
     </Layout>
   );
 }
