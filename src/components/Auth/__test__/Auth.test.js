@@ -20,6 +20,14 @@ const typeIntoForm = ({ email, password }) => {
   };
 };
 
+const clickSubmitButton = () => {
+  const submitButtonElement = screen.getByRole("button", {
+    name: /login/i,
+  });
+
+  userEvent.click(submitButtonElement);
+};
+
 describe("Auth", () => {
   beforeEach(() => {
     // eslint-disable-next-line testing-library/no-render-in-setup
@@ -47,11 +55,7 @@ describe("Auth", () => {
 
       typeIntoForm({ email: "eve.holtreqres.in" });
 
-      const submitButtonElement = screen.getByRole("button", {
-        name: /login/i,
-      });
-
-      userEvent.click(submitButtonElement);
+      clickSubmitButton();
 
       expect(
         screen.getByText(/the email you input is invalid/i)
@@ -67,11 +71,7 @@ describe("Auth", () => {
       // Type in a correct email and incorrect password
       typeIntoForm({ email: "eve.holt@reqres.in", password: "pass" });
 
-      const submitButtonElement = screen.getByRole("button", {
-        name: /login/i,
-      });
-
-      userEvent.click(submitButtonElement);
+      clickSubmitButton();
 
       expect(
         screen.getByText(
@@ -82,11 +82,8 @@ describe("Auth", () => {
     test("should show no error message if every input is valid", () => {
       typeIntoForm({ email: "eve.holt@reqres.in", password: "password!" });
 
-      const submitButtonElement = screen.getByRole("button", {
-        name: /login/i,
-      });
-
-      userEvent.click(submitButtonElement);
+      clickSubmitButton();
+      
       expect(
         screen.queryByText(/the email you input is invalid/i)
       ).not.toBeInTheDocument();
