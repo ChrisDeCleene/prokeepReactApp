@@ -73,10 +73,6 @@ nav {
   align-items: center;
 }
 
-nav {
-  list-style: none;
-}
-
 nav a,
 nav button {
   font-family: "Barlow", sans-serif;
@@ -141,7 +137,6 @@ input {
 *************************************************************/
 .btn-error {
   border-color: var(--error-font);
-  border-width: 2.5px;
   background-color: var(--error-background);
   color: var(--error-font);
 }
