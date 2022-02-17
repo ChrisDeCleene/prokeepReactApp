@@ -45,7 +45,7 @@ describe("Auth", () => {
         screen.queryByText(/the email you input is invalid/i)
       ).not.toBeInTheDocument();
 
-      userEvent.type(screen.getByRole("textbox"), "eve.holtreqres.in");
+      typeIntoForm({ email: "eve.holtreqres.in" });
 
       const submitButtonElement = screen.getByRole("button", {
         name: /login/i,
@@ -64,9 +64,8 @@ describe("Auth", () => {
         )
       ).not.toBeInTheDocument();
 
-      // Type in a correct email or email will throw notice first
-      userEvent.type(screen.getByRole("textbox"), "eve.holt@reqres.in");
-      userEvent.type(screen.getByLabelText("Password"), "pass");
+      // Type in a correct email and incorrect password
+      typeIntoForm({ email: "eve.holt@reqres.in", password: "pass" });
 
       const submitButtonElement = screen.getByRole("button", {
         name: /login/i,
@@ -81,8 +80,7 @@ describe("Auth", () => {
       ).toBeInTheDocument();
     });
     test("should show no error message if every input is valid", () => {
-      userEvent.type(screen.getByRole("textbox"), "eve.holt@reqres.in");
-      userEvent.type(screen.getByLabelText("Password"), "password!");
+      typeIntoForm({ email: "eve.holt@reqres.in", password: "password!" });
 
       const submitButtonElement = screen.getByRole("button", {
         name: /login/i,
