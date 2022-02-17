@@ -60,3 +60,24 @@ nav li a {
   text-decoration: none;
   color: var(--tan-font, white);
 }
+
+input {
+  height: 35px;
+    width: 245px;
+    padding: 10px 7px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    border: 2px solid slategrey;
+}
+
+form button {
+      padding: 10px 34px;
+    cursor: pointer;
+    background: #244968;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+}
