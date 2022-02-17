@@ -9,7 +9,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
         {!isLoggedIn ? (
           <a href="/">Login</a>
         ) : (
-          <button
+          <button className="form-btn"
             onClick={() => {
               localStorage.removeItem("token");
               localStorage.removeItem("expiresIn");
