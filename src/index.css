@@ -60,11 +60,3 @@ nav li a {
   text-decoration: none;
   color: var(--tan-font, white);
 }
-
-.form-control {
-  width: 100%;
-}
-
-.form-control input {
-  width: 80%;
-}
