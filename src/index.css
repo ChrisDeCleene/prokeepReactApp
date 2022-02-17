@@ -5,9 +5,8 @@
 :root {
   --dark-blue: #132c41;
   --light-blue: #2a7990;
-  --blue-font: #132c41;
-  --tan-font: #fff3e2;
-  --yellow-button: #f3b64e;
+  --light-tan: #fff3e2;
+  --dark-yellow: #f3b64e;
   --error-font: #ff0000;
   --error-background: #ffddf8;
 }
@@ -82,7 +81,7 @@ nav button {
   padding-right: 1.125rem;
   font-size: 1.125rem;
   font-weight: bold;
-  color: var(--yellow-button, white);
+  color: var(--dark-yellow, white);
   background: none;
   border: none;
 }
@@ -91,20 +90,42 @@ nav a:hover,
 nav a:active,
 nav button:hover,
 nav button:active {
-  color: var(--tan-font);
+  color: var(--light-tan);
   text-decoration: underline;
+}
+
+/*************************************************************
+  MAIN STYLES
+*************************************************************/
+
+body {
+  background-color: var(--light-blue);
 }
 
 /*************************************************************
   FORM STYLES
 *************************************************************/
 
+section {
+  background-color: var(--light-tan);
+  max-width: 500px;
+  margin: auto;
+  margin-top: 50px;
+  border-radius: 5px;
+  padding: 2rem;
+}
+
+section h1 {
+  color: var(--dark-blue);
+}
+
 input {
   height: 35px;
   width: 245px;
   padding: 10px 7px;
   border-radius: 4px;
-  margin-bottom: 5px;
+  margin-bottom: 1rem;
+  background: var(--light-tan);
   border: 2px solid var(--light-blue);
 }
 
@@ -112,8 +133,8 @@ input {
 .register-link {
   padding: 10px 34px;
   cursor: pointer;
-  background: var(--yellow-button);
-  color: var(--blue-font);
+  background: var(--dark-yellow);
+  color: var(--dark-blue);
   font-weight: bold;
   font-size: 1rem;
   outline: none;
