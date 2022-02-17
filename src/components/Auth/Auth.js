@@ -39,7 +39,6 @@ const Auth = ({ setIsLoggedIn }) => {
         throw new Error("Request failed!");
       })
       .then((jsonResponse) => {
-        console.log(jsonResponse);
         if (jsonResponse.error) {
           // TODO create some sort of error alert on the screen
           return alert(jsonResponse.error);
