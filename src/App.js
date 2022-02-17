@@ -14,7 +14,7 @@ function App() {
         <Route index element={<HomePage isLoggedIn={isLoggedIn} />} />
         {isLoggedIn && (
           <>
-            <Route path="/login" element={<Navigate to="/" />} />
+            <Route path="/login" element={<Navigate to="/profile" />} />
             <Route path="/profile" element={<ProfilePage />} />
           </>
         )}
