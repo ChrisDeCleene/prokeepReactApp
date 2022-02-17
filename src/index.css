@@ -64,6 +64,7 @@ header {
 }
 
 header img {
+  width: 300px;
   max-width: 40vw;
 }
 

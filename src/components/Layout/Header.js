@@ -3,7 +3,7 @@ import ProkeepLogo from "../../assets/prokeep-logo-reversed.svg";
 const Header = ({ isLoggedIn, setIsLoggedIn }) => {
   return (
     <header>
-      <img src={ProkeepLogo} style={{ width: 300 }} alt="Logo" />
+      <img src={ProkeepLogo} alt="Logo" />
 
       <nav>
         <ul>
