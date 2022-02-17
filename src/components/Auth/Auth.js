@@ -1,10 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import isEmail from "validator/lib/isEmail";
 
 const Auth = ({ setIsLoggedIn }) => {
-  let navigate = useNavigate();
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
 
@@ -57,7 +55,6 @@ const Auth = ({ setIsLoggedIn }) => {
           localStorage.setItem("token", JSON.stringify(jsonResponse.token));
           localStorage.setItem("expiresIn", JSON.stringify(expirationTime));
           setIsLoggedIn(true);
-          navigate("/profile", { replace: true });
         }
       });
   };

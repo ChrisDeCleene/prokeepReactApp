@@ -1,25 +1,17 @@
-import { Link } from "react-router-dom";
 import ProkeepLogo from "../../assets/prokeep-logo-reversed.svg";
 
 const Header = ({ isLoggedIn, setIsLoggedIn }) => {
   return (
     <header>
-      <Link to="/">
-        <img src={ProkeepLogo} style={{ width: 300 }} alt="Logo" />
-      </Link>
+      <img src={ProkeepLogo} style={{ width: 300 }} alt="Logo" />
+
       <nav>
         <ul>
-          {!isLoggedIn && (
+          {!isLoggedIn ? (
             <li>
-              <Link to="/login">Login</Link>
+              <a href="/">Login</a>
             </li>
-          )}
-          {isLoggedIn && (
-            <li>
-              <Link to="/profile">Profile</Link>
-            </li>
-          )}
-          {isLoggedIn && (
+          ) : (
             <li>
               <button
                 onClick={() => {
