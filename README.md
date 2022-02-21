@@ -9,6 +9,7 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [Project Status](#project-status)
+- [Room for Improvement](#room-for-improvement)
 - [Contact](#contact)
 
 ## General Information
@@ -53,20 +54,23 @@ Run React Testing Library Suite:
 ```bash
 npm run test
 ```
+
 Create local static build and run:
 
 ```bash
 npm run build
 ```
+
 ```bash
 npm run start
 ```
+
 ---
 
 ## Usage
 
 - Form can be used to login or register a user.
-- Due to Reqres API not accepting new data for login or register, you will need to use a valid email. Below is a list of valid options.
+- Since Reqres API does not accept new data for login or register, you will need to use a valid email. Below is a list of valid options.
 
 1. george.bluth@reqres.in
 2. janet.weaver@reqres.in
@@ -76,7 +80,21 @@ npm run start
 
 ## Project Status
 
-Project is: _complete_
+Project is: _in progress_
+
+## Room for Improvement
+
+Below is a list of areas that I would like to improve, as well as, a list of to-do items for this project:
+
+Room for improvement:
+
+- Move state into Context API or Redux store to improve scalability.
+- Add Redux middleware for managing local storage and store rehydration.
+
+To do:
+
+- Moving fetch from Auth.js into a utils file to handle calls to API in one place (Single Responsibility Principle)
+- Create a modal and overlay for error notifications to replace current use of "alert" api (UI/UX).
 
 ## Contact
 
